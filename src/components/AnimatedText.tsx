@@ -6,15 +6,10 @@ interface AnimatedCharProps {
   progress: ReturnType<typeof useScroll>['scrollYProgress'];
   start: number;
   end: number;
-  totalChars: number;
-  index: number;
 }
 
-const AnimatedChar: React.FC<AnimatedCharProps> = ({ char, progress, start, end, totalChars, index }) => {
-  const charProgress = index / (totalChars - 1);
-  const charStart = Math.max(0, charProgress - 0.1);
-  const charEnd = Math.min(1, charProgress + 0.05);
-  const opacity = useTransform(progress, [charStart, charEnd], [0.2, 1]);
+const AnimatedChar: React.FC<AnimatedCharProps> = ({ char, progress, start, end }) => {
+  const opacity = useTransform(progress, [start, end], [0.2, 1]);
 
   return (
     <span
@@ -61,17 +56,21 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, className = '', style
 
   return (
     <p ref={ref} className={`relative block w-full max-w-full text-center break-words overflow-wrap-anywhere overflow-hidden ${className}`} style={style}>
-      {characters.map((char, i) => (
-        <AnimatedChar
-          key={i}
-          char={char}
-          progress={scrollYProgress}
-          start={0} // start and end are not used in the char, we calculate inside
-          end={0}
-          totalChars={totalChars}
-          index={i}
-        />
-      ))}
+      {characters.map((char, i) => {
+        const charProgress = i / totalChars;
+        const start = Math.max(0, charProgress - 0.1);
+        const end = Math.min(1, charProgress + 0.05);
+
+        return (
+          <AnimatedChar
+            key={i}
+            char={char}
+            progress={scrollYProgress}
+            start={start}
+            end={end}
+          />
+        );
+      })}
     </p>
   );
 };

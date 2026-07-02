@@ -4,7 +4,7 @@ import AnimatedText from '../components/AnimatedText';
 import ContactButton from '../components/ContactButton';
 
 const ABOUT_TEXT =
-  "With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let's build something incredible together!";
+  "I am a dedicated full-stack developer and software engineer driven by the belief that technology should be a catalyst for meaningful change. Combining deep technical expertise with a collaborative, creative vision, I specialize in architecting full-stack web applications and innovative mobile solutions that turn complex user challenges into seamless, elegant experiences. I am on a continuous mission to learn, adapt, and master emerging technologies, aiming to craft purposeful digital products that engage audiences, streamline workflows, and deliver long-term value.";
 
 const AboutSection: React.FC = () => {
   return (
@@ -56,7 +56,7 @@ const AboutSection: React.FC = () => {
 
       {/* Central content */}
       <div className="relative z-10 max-w-4xl w-full flex-1 flex-col items-center gap-16 sm:gap-20 md:gap-24">
-        {/* Group 1: Heading + Animated Text */}
+        {/* Group 1: Heading + Portrait + Animated Text */}
         <div className="flex flex-col items-center gap-10 sm:gap-14 md:gap-16">
           {/* Heading */}
           <FadeIn delay={0} y={40} duration={0.7}>

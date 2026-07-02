@@ -47,12 +47,12 @@ const HeroSection: React.FC = () => {
         </div>
       </FadeIn>
 
-      {/* Portrait — absolutely centered */}
+      {/* Portrait — absolutely centered with padding from bottom and right */}
       <FadeIn
         delay={0.6}
         y={30}
         duration={0.7}
-        className="absolute left-1/2 -translate-x-1/2 z-10 top-1/2 -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-0"
+        className="absolute left-1/2 -translate-x-1/2 z-10 top-1/2 -translate-y-1/2 pb-6 pr-6 sm:pb-10 sm:pr-10 md:pb-16 md:pr-14"
       >
         <Magnet
           padding={150}
