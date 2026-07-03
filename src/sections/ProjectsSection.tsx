@@ -57,74 +57,75 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, progress }) =
   return (
     <div
       className="sticky"
-      style={{ top: `${96 + index * 28}px`, height: '85vh' }}
+      style={{ top: `${80 + index * 20}px`, height: '80vh' }}
     >
       <motion.div
         style={{ scale }}
         className="
           h-full
-          rounded-[40px] sm:rounded-[50px] md:rounded-[60px]
+          rounded-[24px] sm:rounded-[32px] md:rounded-[40px] lg:rounded-[50px]
           border-2 border-[#D7E2EA]
           bg-[#0C0C0C]
-          p-4 sm:p-6 md:p-8
-          flex flex-col gap-4 md:gap-6
+          p-3 sm:p-4 md:p-6 lg:p-8
+          flex flex-col gap-3 sm:gap-4 md:gap-6
           overflow-hidden
         "
       >
         {/* Top row */}
-        <div className="flex items-center justify-between flex-wrap gap-4">
-          <div className="flex items-baseline gap-4 md:gap-6">
+        <div className="flex items-center justify-between flex-wrap gap-2 sm:gap-4">
+          <div className="flex items-baseline gap-2 sm:gap-4 md:gap-6">
             <span
               className="font-black text-[#D7E2EA] leading-none"
-              style={{ fontSize: 'clamp(3rem, 10vw, 140px)' }}
+              style={{ fontSize: 'clamp(2rem, 8vw, 6rem)' }}
             >
               {project.num}
             </span>
             <div className="flex flex-col">
               <span
                 className="text-[#D7E2EA] font-light uppercase tracking-widest opacity-60"
-                style={{ fontSize: 'clamp(0.7rem, 1.2vw, 1rem)' }}
+                style={{ fontSize: 'clamp(0.6rem, 1vw, 0.9rem)' }}
               >
                 {project.category}
               </span>
               <span
                 className="text-[#D7E2EA] font-medium uppercase tracking-wide"
-                style={{ fontSize: 'clamp(1rem, 2.2vw, 2.1rem)' }}
+                style={{ fontSize: 'clamp(0.9rem, 2vw, 1.8rem)' }}
               >
                 {project.name}
               </span>
             </div>
           </div>
-          <LiveProjectButton url={project.url} />
+          <div className="flex-shrink-0">
+            <LiveProjectButton url={project.url} />
+          </div>
         </div>
 
         {/* Bottom: image grid */}
-        <div className="flex gap-3 flex-1 min-h-0">
+        <div className="flex gap-2 sm:gap-3 flex-1 min-h-0">
           {/* Left column — 40% width, 2 stacked images */}
-          <div className="flex flex-col gap-3" style={{ width: '40%' }}>
+          <div className="flex flex-col gap-2 sm:gap-3 w-2/5">
             <img
               src={project.col1img1}
               alt={`${project.name} preview 1`}
               loading="lazy"
-              className="w-full object-cover rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
-              style={{ height: 'clamp(130px, 16vw, 230px)' }}
+              className="w-full object-cover rounded-[16px] sm:rounded-[20px] md:rounded-[24px] lg:rounded-[32px]"
+              style={{ height: 'clamp(100px, 12vw, 180px)' }}
             />
             <img
               src={project.col1img2}
               alt={`${project.name} preview 2`}
               loading="lazy"
-              className="w-full object-cover rounded-[40px] sm:rounded-[50px] md:rounded-[60px] flex-1"
-              style={{ height: 'clamp(160px, 22vw, 340px)' }}
+              className="w-full object-cover rounded-[16px] sm:rounded-[20px] md:rounded-[24px] lg:rounded-[32px] flex-1"
             />
           </div>
 
           {/* Right column — 60% width, 1 tall image */}
-          <div style={{ width: '60%' }}>
+          <div className="w-3/5">
             <img
               src={project.col2img}
               alt={`${project.name} preview 3`}
               loading="lazy"
-              className="w-full h-full object-cover rounded-[40px] sm:rounded-[50px] md:rounded-[60px]"
+              className="w-full h-full object-cover rounded-[16px] sm:rounded-[20px] md:rounded-[24px] lg:rounded-[32px]"
             />
           </div>
         </div>
@@ -145,19 +146,19 @@ const ProjectsSection: React.FC = () => {
       id="projects"
       className="
         bg-[#0C0C0C]
-        rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px]
-        -mt-10 sm:-mt-12 md:-mt-14
+        rounded-t-[24px] sm:rounded-t-[32px] md:rounded-t-[40px] lg:rounded-t-[50px]
+        -mt-6 sm:-mt-8 md:-mt-10 lg:-mt-12
         z-10 relative
-        px-5 sm:px-8 md:px-10
-        pt-20 sm:pt-24 md:pt-32
-        pb-20
+        px-3 sm:px-5 md:px-8 lg:px-10
+        pt-12 sm:pt-16 md:pt-20 lg:pt-24
+        pb-12 sm:pb-16 md:pb-20
       "
     >
       {/* Section heading */}
       <FadeIn delay={0} y={40} duration={0.7}>
         <h2
-          className="hero-heading font-black uppercase leading-none tracking-tight text-center mb-12 md:mb-16"
-          style={{ fontSize: 'clamp(3rem, 12vw, 160px)' }}
+          className="hero-heading font-black uppercase leading-none tracking-tight text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16"
+          style={{ fontSize: 'clamp(2.5rem, 10vw, 8rem)' }}
         >
           Project
         </h2>
@@ -166,7 +167,7 @@ const ProjectsSection: React.FC = () => {
       {/* Stacking cards container */}
       <div
         ref={containerRef}
-        style={{ height: `${TOTAL_CARDS * 85}vh` }}
+        style={{ height: `${TOTAL_CARDS * 80}vh` }}
       >
         {PROJECTS.map((project, index) => (
           <ProjectCard

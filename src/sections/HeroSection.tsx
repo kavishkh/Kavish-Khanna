@@ -2,6 +2,7 @@ import React from 'react';
 import FadeIn from '../components/FadeIn';
 import ContactButton from '../components/ContactButton';
 import Magnet from '../components/Magnet';
+import heroImage from '../Image/1.png';
 
 const HeroSection: React.FC = () => {
   const navLinks = ['About', 'Skill', 'Projects', 'Contact'];
@@ -14,7 +15,7 @@ const HeroSection: React.FC = () => {
     >
       {/* Navbar */}
       <FadeIn delay={0} y={-20} duration={0.7}>
-        <nav className="flex justify-between items-center px-4 sm:px-6 md:px-10 pt-4 sm:pt-6 md:pt-8 gap-2 sm:gap-4">
+        <nav className="flex justify-between items-center px-3 sm:px-4 md:px-6 lg:px-10 pt-3 sm:pt-4 md:pt-6 lg:pt-8 gap-1 sm:gap-2 md:gap-4">
           {navLinks.map((link) => (
             <a
               key={link}
@@ -22,8 +23,9 @@ const HeroSection: React.FC = () => {
               id={`nav-${link.toLowerCase()}`}
               className="
                 text-[#D7E2EA] font-medium uppercase tracking-wider
-                text-[0.65rem] xs:text-xs sm:text-sm md:text-lg lg:text-[1.4rem]
+                text-[0.6rem] xs:text-[0.65rem] sm:text-xs md:text-sm lg:text-base xl:text-lg
                 transition-opacity duration-200 hover:opacity-70
+                flex-1 text-center sm:flex-initial
               "
             >
               {link}
@@ -32,53 +34,66 @@ const HeroSection: React.FC = () => {
         </nav>
       </FadeIn>
 
-      {/* Hero Heading */}
-      <FadeIn delay={0.15} y={40} duration={0.7}>
-        <div className="overflow-hidden mt-8 sm:mt-6 md:mt-2 px-6 sm:px-10 md:px-16">
-          <h1
-            className="
-              hero-heading font-black uppercase tracking-tight leading-none
-              whitespace-nowrap w-full text-center
-              text-[9vw] xs:text-[10vw] sm:text-[11vw] md:text-[12vw] lg:text-[13vw]
-            "
-          >
-            Hi, i&apos;m kavish
-          </h1>
-        </div>
-      </FadeIn>
+      {/* Hero Content Container */}
+      <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 md:px-10 lg:px-16 py-4 sm:py-6">
+        {/* Hero Heading */}
+        <FadeIn delay={0.15} y={40} duration={0.7}>
+          <div className="overflow-hidden mb-4 sm:mb-6 md:mb-8">
+            <h1
+              className="
+                hero-heading font-black uppercase tracking-tight leading-none
+                text-center break-words
+                text-[12vw] xs:text-[10vw] sm:text-[9vw] md:text-[8vw] lg:text-[8vw] xl:text-[7vw] 2xl:text-[6vw]
+                max-w-full
+              "
+            >
+              Hi, i&apos;m kavish
+            </h1>
+          </div>
+        </FadeIn>
 
-      {/* Portrait — absolutely centered with padding from bottom and right */}
-      <FadeIn
-        delay={0.6}
-        y={30}
-        duration={0.7}
-        className="absolute left-1/2 -translate-x-1/2 z-10 top-1/2 -translate-y-1/2 pb-6 pr-6 sm:pb-10 sm:pr-10 md:pb-16 md:pr-14"
-      >
-        <Magnet
-          padding={150}
-          strength={3}
-          activeTransition="transform 0.3s ease-out"
-          inactiveTransition="transform 0.6s ease-in-out"
+        {/* Portrait — centered below heading */}
+        <FadeIn
+          delay={0.6}
+          y={30}
+          duration={0.7}
+          className="flex-shrink-0"
         >
-          <img
-            src="https://shrug-person-78902957.figma.site/_components/v2/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png"
-            alt="Kavish Khanna portrait"
-            className="w-[180px] xs:w-[220px] sm:w-[300px] md:w-[400px] lg:w-[480px] xl:w-[520px] object-contain max-w-[90vw]"
-            loading="lazy"
-          />
-        </Magnet>
-      </FadeIn>
+          <Magnet
+            padding={100}
+            strength={2}
+            activeTransition="transform 0.3s ease-out"
+            inactiveTransition="transform 0.6s ease-in-out"
+          >
+            <img
+              src={heroImage}
+              alt="Kavish Khanna portrait"
+              className="
+                w-[140px] h-[140px] 
+                xs:w-[160px] xs:h-[160px]
+                sm:w-[200px] sm:h-[200px] 
+                md:w-[280px] md:h-[280px] 
+                lg:w-[350px] lg:h-[350px] 
+                xl:w-[400px] xl:h-[400px]
+                object-cover rounded-lg
+                max-w-[80vw] max-h-[40vh]
+              "
+              loading="lazy"
+            />
+          </Magnet>
+        </FadeIn>
+      </div>
 
       {/* Bottom bar */}
-      <div className="mt-auto flex justify-between items-end gap-3 px-4 sm:px-6 md:px-10 pb-5 sm:pb-7 md:pb-10">
+      <div className="mt-auto flex flex-col sm:flex-row justify-between items-center sm:items-end gap-4 sm:gap-3 px-4 sm:px-6 md:px-10 pb-4 sm:pb-6 md:pb-8 lg:pb-10">
         {/* Left text */}
         <FadeIn delay={0.35} y={20} duration={0.7}>
           <p
             className="
-              text-[#D7E2EA] font-light uppercase tracking-wide leading-snug
-              max-w-[120px] xs:max-w-[150px] sm:max-w-[200px] md:max-w-[260px]
+              text-[#D7E2EA] font-light uppercase tracking-wide leading-snug text-center sm:text-left
+              max-w-[200px] sm:max-w-[150px] md:max-w-[200px] lg:max-w-[260px]
+              text-[0.7rem] sm:text-[0.75rem] md:text-[0.85rem] lg:text-[1rem]
             "
-            style={{ fontSize: 'clamp(0.6rem, 1.2vw, 1.4rem)' }}
           >
             developer • creator • cosmic explorer
           </p>
@@ -86,7 +101,7 @@ const HeroSection: React.FC = () => {
 
         {/* Right: Contact Button */}
         <FadeIn delay={0.5} y={20} duration={0.7}>
-          <ContactButton />
+          <ContactButton className="flex-shrink-0" />
         </FadeIn>
       </div>
     </section>
