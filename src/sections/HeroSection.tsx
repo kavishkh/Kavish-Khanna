@@ -4,8 +4,12 @@ import ContactButton from '../components/ContactButton';
 import Magnet from '../components/Magnet';
 import heroImage from '../Image/1.png';
 
-const HeroSection: React.FC = () => {
-  const navLinks = ['About', 'Skill', 'Projects', 'Contact'];
+interface HeroSectionProps {
+  onContactClick: () => void;
+}
+
+const HeroSection: React.FC<HeroSectionProps> = ({ onContactClick }) => {
+  const navLinks = ['About', 'Skill', 'Projects'];
 
   return (
     <section
@@ -31,6 +35,17 @@ const HeroSection: React.FC = () => {
               {link}
             </a>
           ))}
+          <button
+            onClick={onContactClick}
+            className="
+              text-[#D7E2EA] font-medium uppercase tracking-wider
+              text-[0.6rem] xs:text-[0.65rem] sm:text-xs md:text-sm lg:text-base xl:text-lg
+              transition-opacity duration-200 hover:opacity-70
+              flex-1 text-center sm:flex-initial bg-transparent border-none cursor-pointer
+            "
+          >
+            Contact
+          </button>
         </nav>
       </FadeIn>
 
@@ -95,13 +110,13 @@ const HeroSection: React.FC = () => {
               text-[0.7rem] sm:text-[0.75rem] md:text-[0.85rem] lg:text-[1rem]
             "
           >
-            developer • creator • cosmic explorer
+            developer • creator
           </p>
         </FadeIn>
 
         {/* Right: Contact Button */}
         <FadeIn delay={0.5} y={20} duration={0.7}>
-          <ContactButton className="flex-shrink-0" />
+          <ContactButton className="flex-shrink-0" onClick={onContactClick} />
         </FadeIn>
       </div>
     </section>

@@ -6,7 +6,11 @@ import ContactButton from '../components/ContactButton';
 const ABOUT_TEXT =
   "I am a dedicated full-stack developer and software engineer driven by the belief that technology should be a catalyst for meaningful change. Combining deep technical expertise with a collaborative, creative vision, I specialize in architecting full-stack web applications and innovative mobile solutions that turn complex user challenges into seamless, elegant experiences. I am on a continuous mission to learn, adapt, and master emerging technologies, aiming to craft purposeful digital products that engage audiences, streamline workflows, and deliver long-term value.";
 
-const AboutSection: React.FC = () => {
+interface AboutSectionProps {
+  onContactClick: () => void;
+}
+
+const AboutSection: React.FC<AboutSectionProps> = ({ onContactClick }) => {
   return (
     <section
       id="about"
@@ -77,7 +81,7 @@ const AboutSection: React.FC = () => {
 
         {/* Contact Button */}
         <FadeIn delay={0.3} y={20} duration={0.7}>
-          <ContactButton />
+          <ContactButton onClick={onContactClick} />
         </FadeIn>
       </div>
     </section>

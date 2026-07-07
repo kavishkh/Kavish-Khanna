@@ -1,9 +1,15 @@
 import React from 'react';
 
-const ContactButton: React.FC<{ className?: string }> = ({ className = '' }) => {
+interface ContactButtonProps {
+  className?: string;
+  onClick?: () => void;
+}
+
+const ContactButton: React.FC<ContactButtonProps> = ({ className = '', onClick }) => {
   return (
     <button
       id="contact-button"
+      onClick={onClick}
       className={`
         rounded-full font-medium uppercase tracking-widest text-white
         px-8 py-3 sm:px-10 sm:px-10 sm:py-3.5 md:px-12 md:py-4
