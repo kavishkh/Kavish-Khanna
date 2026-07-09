@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import FadeIn from '../components/FadeIn';
 import LiveProjectButton from '../components/LiveProjectButton';
 
@@ -9,36 +9,36 @@ const PROJECTS = [
     category: 'Full Stack',
     name: 'Cartsy',
     url: 'https://cartsy-silk.vercel.app/',
-    col1img1: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85',
-    col1img2: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png&w=1280&q=85',
-    col2img: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85',
+    col1img1: '/src/Image/Cartsy/1.png',
+    col1img2: '/src/Image/Cartsy/2.png',
+    col2img: '/src/Image/Cartsy/3.png',
   },
   {
     num: '02',
     category: 'Client',
     name: 'PowerLite',
     url: 'https://powerlite-heyr.vercel.app/',
-    col1img1: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055654_911201c5-36d9-4bc6-bac7-331adfce159f.png&w=1280&q=85',
-    col1img2: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055723_5ceda0b8-d9c2-4665-b2e3-83ba19ba76d1.png&w=1280&q=85',
-    col2img: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055753_adc5dcbd-a8e6-49c0-b43a-9b030d835cea.png&w=1280&q=85',
+    col1img1: '/src/Image/PowerLite/1.png',
+    col1img2: '/src/Image/PowerLite/2.png',
+    col2img: '/src/Image/PowerLite/3.png',
   },
   {
     num: '03',
     category: 'Web App',
     name: 'FRXSH',
     url: 'https://frxsh.vercel.app/',
-    col1img1: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055759_963cfb0b-4bd1-4b0f-9d0a-09bd6cf95b2f.png&w=1280&q=85',
-    col1img2: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_060108_438f781a-9846-4dcc-89ab-c4e6cb830f5b.png&w=1280&q=85',
-    col2img: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055818_9d062121-ad7e-46b9-999a-1a6a692ef1ee.png&w=1280&q=85',
+col1img1: '/src/Image/FRXSH/1.png',
+    col1img2: '/src/Image/FRXSH/2.png',
+    col2img: '/src/Image/FRXSH/3.png',
   },
   {
     num: '04',
     category: 'Mobile',
     name: 'SplitSmart',
     url: 'https://split-smart-ten.vercel.app/',
-    col1img1: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055344_5eff02e0-87a5-41ce-b64f-eb08da8f33db.png&w=1280&q=85',
-    col1img2: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055431_11d841fd-8b41-46a5-82e4-b04f2407a7d8.png&w=1280&q=85',
-    col2img: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260412_055451_e317bf2d-28d4-48cc-86b0-6f72f25b6327.png&w=1280&q=85',
+    col1img1: '/src/Image/SplitSmart/1.png',
+    col1img2: '/src/Image/SplitSmart/2.png',
+    col2img: '/src/Image/SplitSmart/3.png',
   },
 ];
 
@@ -48,9 +48,10 @@ interface ProjectCardProps {
   project: typeof PROJECTS[0];
   index: number;
   progress: ReturnType<typeof useScroll>['scrollYProgress'];
+  onImageClick: (src: string) => void;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, progress }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, progress, onImageClick }) => {
   const targetScale = 1 - (TOTAL_CARDS - 1 - index) * 0.03;
   const scale = useTransform(progress, [index / TOTAL_CARDS, 1], [1, targetScale]);
 
@@ -104,29 +105,35 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index, progress }) =
         <div className="flex gap-2 sm:gap-3 flex-1 min-h-0">
           {/* Left column — 40% width, 2 stacked images */}
           <div className="flex flex-col gap-2 sm:gap-3 w-2/5">
-            <img
-              src={project.col1img1}
-              alt={`${project.name} preview 1`}
-              loading="lazy"
-              className="w-full object-cover rounded-[16px] sm:rounded-[20px] md:rounded-[24px] lg:rounded-[32px]"
-              style={{ height: 'clamp(100px, 12vw, 180px)' }}
-            />
-            <img
-              src={project.col1img2}
-              alt={`${project.name} preview 2`}
-              loading="lazy"
-              className="w-full object-cover rounded-[16px] sm:rounded-[20px] md:rounded-[24px] lg:rounded-[32px] flex-1"
-            />
+            <button onClick={() => onImageClick(project.col1img1)} className="block w-full text-left p-0 border-0 bg-transparent cursor-pointer">
+              <img
+                src={project.col1img1}
+                alt={`${project.name} preview 1`}
+                loading="lazy"
+                className="w-full object-cover rounded-[16px] sm:rounded-[20px] md:rounded-[24px] lg:rounded-[32px] hover:opacity-80 transition-opacity"
+                style={{ height: 'clamp(100px, 12vw, 180px)' }}
+              />
+            </button>
+            <button onClick={() => onImageClick(project.col1img2)} className="block w-full text-left p-0 border-0 bg-transparent cursor-pointer flex-1">
+              <img
+                src={project.col1img2}
+                alt={`${project.name} preview 2`}
+                loading="lazy"
+                className="w-full object-cover rounded-[16px] sm:rounded-[20px] md:rounded-[24px] lg:rounded-[32px] hover:opacity-80 transition-opacity flex-1"
+              />
+            </button>
           </div>
 
           {/* Right column — 60% width, 1 tall image */}
           <div className="w-3/5">
-            <img
-              src={project.col2img}
-              alt={`${project.name} preview 3`}
-              loading="lazy"
-              className="w-full h-full object-cover rounded-[16px] sm:rounded-[20px] md:rounded-[24px] lg:rounded-[32px]"
-            />
+            <button onClick={() => onImageClick(project.col2img)} className="block w-full h-full text-left p-0 border-0 bg-transparent cursor-pointer">
+              <img
+                src={project.col2img}
+                alt={`${project.name} preview 3`}
+                loading="lazy"
+                className="w-full h-full object-cover rounded-[16px] sm:rounded-[20px] md:rounded-[24px] lg:rounded-[32px] hover:opacity-80 transition-opacity"
+              />
+            </button>
           </div>
         </div>
       </motion.div>
@@ -140,6 +147,17 @@ const ProjectsSection: React.FC = () => {
     target: containerRef,
     offset: ['start start', 'end end'],
   });
+
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!lightboxSrc) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxSrc(null);
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [lightboxSrc]);
 
   return (
     <section
@@ -175,9 +193,34 @@ const ProjectsSection: React.FC = () => {
             project={project}
             index={index}
             progress={scrollYProgress}
+            onImageClick={setLightboxSrc}
           />
         ))}
       </div>
+
+      <AnimatePresence>
+        {lightboxSrc && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightboxSrc(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 cursor-pointer"
+          >
+            <motion.img
+              key={lightboxSrc}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              src={lightboxSrc}
+              alt=""
+              className="max-w-[80vw] max-h-[80vh] object-contain rounded-3xl cursor-default"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
