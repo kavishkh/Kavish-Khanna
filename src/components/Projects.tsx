@@ -1,187 +1,193 @@
-import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowRight, ExternalLink, Github } from "lucide-react";
 
-interface Project {
-  name: string;
-  description: string;
-  tech: string[];
-  color: "primary" | "secondary" | "accent";
-  demo: string;
-  github: string;
-  demo2?: string;
-  github2?: string;
-}
+gsap.registerPlugin(ScrollTrigger);
 
-const projects: Project[] = [
-  {
-    name: "Cartsy",
-    description: "Full-stack e-commerce platform with a shopper app and a separate vendor dashboard for managing inventory, orders, and sales.",
-    tech: ["React", "Node.js", "MongoDB"],
-    color: "accent",
-    demo: "https://cartsy-silk.vercel.app/",
-    github: "https://github.com/kavishkh/CARTSY",
-    demo2: "https://cartsy-vendor.vercel.app/",
-    github2: "https://github.com/kavishkh/CARTSY-VENDOR",
-  },
-  {
-    name: "PowerLite",
-    description: "Powerlite is a professional site for Powerlite Electricals showcasing premium electrical solutions and industrial transformer products.",
-    tech: ["React", "Node.js", "MongoDB"],
-    color: "primary",
-    demo: "https://powerlite-heyr.vercel.app/",
-    github: "#",
-  },
-  {
-    name: "FRXSH",
-    description: "Frxsh is a student-driven platform empowering student entrepreneurs to build their brands and sell their products.",
-    tech: ["Next.js", "PostgreSQL", "Stripe"],
-    color: "secondary",
-    demo: "https://frxsh.vercel.app/",
-    github: "#",
-  },
-  {
-    name: "Reflect Recovery Journey",
-    description: "Mental health tracking app helping users document and analyze their recovery progress.",
-    tech: ["React Native", "Firebase", "ML"],
-    color: "accent",
-    demo: "#",
-    github: "#",
-  },
-  {
-    name: "SplitSmart",
-    description: "Intelligent expense splitting app for groups with smart categorization and settlement.",
-    tech: ["React", "Express", "Redis"],
-    color: "primary",
-    demo: "https://split-smart-ten.vercel.app/",
-    github: "#",
-  },
+const PROJECTS = [
   {
     name: "HerFlow",
-    description: "Comprehensive period tracking and health management platform for women's wellness.",
-    tech: ["Flutter", "Python", "TensorFlow"],
-    color: "secondary",
-    demo: "#",
-    github: "#",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80",
+    category: "HEALTH / PRODUCTIVITY",
+    problem: "Women's health data fragmented across multiple apps with no unified tracker.",
+    solution: "A unified period & wellness tracking platform that consolidates cycle data, symptoms, and insights in one private interface.",
+    tech: ["React Native", "Python", "TensorFlow"],
+    demo: null as string | null,
+    github: null as string | null,
+  },
+  {
+    name: "Frxsh",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
+    category: "E-COMMERCE",
+    problem: "Student entrepreneurs lack a low-friction storefront to sell products on campus.",
+    solution: "A student-driven marketplace enabling creators to build brands and sell directly.",
+    tech: ["Next.js", "PostgreSQL", "Stripe"],
+    demo: "https://frxsh.vercel.app/",
+    github: null as string | null,
+  },
+  {
+    name: "NourishWell",
+    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80",
+    category: "WELLNESS",
+    problem: "Nutrition planning is one-size-fits-all and difficult to sustain.",
+    solution: "Personalized meal planning and nutrition tracking adapted to individual goals and dietary preferences.",
+    tech: ["React", "Node.js", "MongoDB"],
+    demo: null as string | null,
+    github: null as string | null,
+  },
+  {
+    name: "Powerlite",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80",
+    category: "INDUSTRIAL / ELECTRICAL",
+    problem: "Premium electrical solutions needed a professional digital presence to reach buyers.",
+    solution: "A clean corporate site showcasing industrial transformers and electrical products with clear specifications.",
+    tech: ["React", "Node.js", "MongoDB"],
+    demo: "https://powerlite-heyr.vercel.app/",
+    github: null as string | null,
   },
 ];
 
-const colorClasses = {
-  primary: {
-    border: "border-primary/20 hover:border-primary/50",
-    icon: "text-primary",
-    badge: "border-primary/30 bg-primary/10 text-primary",
-  },
-  secondary: {
-    border: "border-secondary/20 hover:border-secondary/50",
-    icon: "text-secondary",
-    badge: "border-secondary/30 bg-secondary/10 text-secondary",
-  },
-  accent: {
-    border: "border-accent/20 hover:border-accent/50",
-    icon: "text-accent",
-    badge: "border-accent/30 bg-accent/10 text-accent",
-  },
-};
+export default function Projects() {
+  const sectionRef = useRef<HTMLElement>(null);
 
-const Projects = () => {
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const ctx = gsap.context(() => {
+      gsap.set(".projects-label",        { opacity: 0, y: 20 });
+      gsap.set(".projects-heading-line", { y: "105%" });
+      gsap.set(".project-row",           { opacity: 0, y: 40 });
+
+      gsap.to(".projects-label", {
+        opacity: 1, y: 0, duration: 0.8, ease: "power3.out",
+        clearProps: "opacity,y",
+        scrollTrigger: { trigger: ".projects-label", start: "top 85%", once: true },
+      });
+
+      gsap.to(".projects-heading-line", {
+        y: "0%", duration: 0.85, ease: "power3.out",
+        scrollTrigger: { trigger: ".projects-heading", start: "top 85%", once: true },
+      });
+
+      gsap.to(".project-row", {
+        opacity: 1, y: 0, duration: 0.9, ease: "power3.out", stagger: 0.14,
+        clearProps: "opacity,y",
+        scrollTrigger: { trigger: ".projects-list", start: "top 82%", once: true },
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="projects" className="relative py-20 sm:py-28 lg:py-32">
-      <div className="container mx-auto px-4 sm:px-6">
-        <div>
-          <h2 className="mb-10 text-center text-3xl font-bold text-light-grey sm:mb-16 sm:text-4xl lg:text-5xl">Floating Projects</h2>
+    <section
+      id="work"
+      ref={sectionRef}
+      className="bg-white py-24 sm:py-32 lg:py-40 overflow-hidden"
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <p className="projects-label text-label text-[#777777] mb-10">03 / SELECTED WORK</p>
 
-          <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2 xl:grid-cols-3 lg:gap-8">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.name}
-                initial={{ opacity: 0, y: 50, rotateX: -15 }}
-                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-                viewport={{ once: false }}
-                transition={{ delay: index * 0.15 }}
-                whileHover={{ scale: 1.05, rotateY: 5, z: 50 }}
-                className={`animate-float cursor-pointer rounded-lg border bg-card/50 p-5 backdrop-blur-sm transition-all sm:p-6 lg:p-8 ${colorClasses[project.color].border}`}
-                style={{
-                  animationDelay: `${index * 0.3}s`,
-                  transformStyle: "preserve-3d",
-                }}
-              >
-                {/* Header: title + links */}
-                <div className="mb-4 flex items-start justify-between gap-4">
-                  <h3 className="min-w-0 text-xl font-bold text-light-grey sm:text-2xl">{project.name}</h3>
-                  <div className="flex shrink-0 flex-wrap justify-end gap-2">
-                    {project.github && project.github !== "#" && (
-                      <motion.a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.2, rotate: 15 }}
-                        title="GitHub"
-                      >
-                        <Github className={`h-5 w-5 cursor-pointer ${colorClasses[project.color].icon}`} />
-                      </motion.a>
-                    )}
-                    {project.demo && project.demo !== "#" && (
-                      <motion.a
+        <div className="projects-heading mb-16 lg:mb-20">
+          <span className="clip-text-wrap">
+            <span className="projects-heading-line block text-section-heading text-[#111111]">
+              PROOF OVER PROMISES.
+            </span>
+          </span>
+        </div>
+
+        <div className="projects-list border-t border-[#E5E5E5]">
+          {PROJECTS.map((project) => (
+            <article
+              key={project.name}
+              className="project-row img-hover-parent group border-b border-[#E5E5E5] py-10 sm:py-14 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 transition-button hover:bg-[#F7F7F7] -mx-4 px-4 sm:-mx-6 sm:px-6"
+            >
+              {/* Image */}
+              <div className="lg:col-span-4 xl:col-span-3">
+                <div className="img-wrap w-full" style={{ aspectRatio: "4/3" }}>
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    className="transition-image"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="lg:col-span-8 xl:col-span-9 flex flex-col justify-between gap-6">
+                {/* Title row */}
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                  <div>
+                    <h3
+                      className="font-bold text-[#111111] geo-sans group-hover:translate-x-[3px] transition-button"
+                      style={{ fontSize: "clamp(22px, 2.5vw, 32px)", letterSpacing: "-0.03em", lineHeight: 1.1 }}
+                    >
+                      {project.name}
+                    </h3>
+                    <p className="text-label text-[#777777] mt-2">{project.category}</p>
+                  </div>
+
+                  <div className="flex items-center gap-6 shrink-0">
+                    {project.demo && (
+                      <a
                         href={project.demo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        whileHover={{ scale: 1.2, rotate: -15 }}
-                        title="Live Demo"
+                        onClick={(e) => e.stopPropagation()}
+                        className="group/link flex items-center gap-1.5 text-label text-[#111111] link-underline"
+                        aria-label={`Live demo of ${project.name}`}
                       >
-                        <ExternalLink className={`h-5 w-5 cursor-pointer ${colorClasses[project.color].icon}`} />
-                      </motion.a>
+                        <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                        LIVE DEMO
+                        <ArrowRight className="w-3.5 h-3.5 shrink-0 transition-transform duration-300 ease-custom group-hover/link:translate-x-[3px]" aria-hidden="true" />
+                      </a>
+                    )}
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="group/link flex items-center gap-1.5 text-label text-[#111111] link-underline"
+                        aria-label={`GitHub for ${project.name}`}
+                      >
+                        <Github className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
+                        GITHUB
+                        <ArrowRight className="w-3.5 h-3.5 shrink-0 transition-transform duration-300 ease-custom group-hover/link:translate-x-[3px]" aria-hidden="true" />
+                      </a>
                     )}
                   </div>
                 </div>
 
-                {/* Description */}
-                <p className="mb-4 text-sm leading-relaxed text-foreground sm:text-base">{project.description}</p>
-
-                {/* Vendor sub-links for Cartsy */}
-                {project.demo2 && (
-                  <div className={`mb-4 flex w-fit max-w-full items-center gap-2 rounded-lg border px-3 py-1.5 ${colorClasses[project.color].badge}`}>
-                    <span className="text-xs font-medium">Vendor App</span>
-                    {project.github2 && (
-                      <motion.a
-                        href={project.github2}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.2 }}
-                        title="Vendor GitHub"
-                      >
-                        <Github className="h-3.5 w-3.5 cursor-pointer" />
-                      </motion.a>
-                    )}
-                    <motion.a
-                      href={project.demo2}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.2 }}
-                      title="Vendor Demo"
-                    >
-                      <ExternalLink className="h-3.5 w-3.5 cursor-pointer" />
-                    </motion.a>
+                {/* Problem / Solution */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <p className="text-label text-[#777777] mb-2">PROBLEM</p>
+                    <p className="text-body">{project.problem}</p>
                   </div>
-                )}
+                  <div>
+                    <p className="text-label text-[#777777] mb-2">SOLUTION</p>
+                    <p className="text-body">{project.solution}</p>
+                  </div>
+                </div>
 
-                {/* Tech tags */}
+                {/* Tech */}
                 <div className="flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className={`rounded-full border px-3 py-1 text-xs sm:text-sm ${colorClasses[project.color].badge}`}
-                    >
-                      {tech}
+                  {project.tech.map((t) => (
+                    <span key={t} className="text-label text-[#777777] border border-[#E5E5E5] px-3 py-1">
+                      {t}
                     </span>
                   ))}
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default Projects;
+}

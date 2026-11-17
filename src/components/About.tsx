@@ -1,65 +1,113 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const About = () => {
+gsap.registerPlugin(ScrollTrigger);
+
+export default function About() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const ctx = gsap.context(() => {
+      // Set initial states
+      gsap.set(".about-label",   { opacity: 0, y: 20 });
+      gsap.set(".about-line",    { y: "105%" });
+      gsap.set(".about-divider", { scaleX: 0, transformOrigin: "left center" });
+      gsap.set(".about-body",    { opacity: 0, y: 28 });
+      gsap.set(".about-stat",    { opacity: 0, y: 24 });
+
+      const st = (trigger: string, start = "top 85%") => ({
+        trigger,
+        start,
+        once: true,
+      });
+
+      gsap.to(".about-label", {
+        opacity: 1, y: 0, duration: 0.8, ease: "power3.out",
+        clearProps: "opacity,y",
+        scrollTrigger: st(".about-label"),
+      });
+
+      gsap.to(".about-line", {
+        y: "0%", duration: 0.85, ease: "power3.out", stagger: 0.1,
+        scrollTrigger: st(".about-heading"),
+      });
+
+      gsap.to(".about-divider", {
+        scaleX: 1, duration: 0.9, ease: "power3.out",
+        clearProps: "scaleX,transformOrigin",
+        scrollTrigger: st(".about-divider", "top 90%"),
+      });
+
+      gsap.to(".about-body", {
+        opacity: 1, y: 0, duration: 0.8, ease: "power3.out",
+        clearProps: "opacity,y",
+        scrollTrigger: st(".about-body", "top 88%"),
+      });
+
+      gsap.to(".about-stat", {
+        opacity: 1, y: 0, duration: 0.7, ease: "power3.out", stagger: 0.1,
+        clearProps: "opacity,y",
+        scrollTrigger: st(".about-stats", "top 88%"),
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="about" className="relative overflow-hidden py-20 sm:py-28 lg:py-32">
-      <div className="container mx-auto px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto"
-        >
-          <h2 className="mb-10 text-center text-3xl font-bold text-light-grey sm:mb-12 sm:text-4xl lg:text-5xl">About Me</h2>
+    <section
+      id="about"
+      ref={sectionRef}
+      className="bg-white py-24 sm:py-32 lg:py-40 overflow-hidden"
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <p className="about-label text-label text-[#777777] mb-10">01 / ABOUT</p>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false }}
-              transition={{ delay: 0.2 }}
-              className="rounded-lg border border-primary/20 bg-card/50 p-5 backdrop-blur-sm glow-cyan transition-all hover:border-primary/50 sm:p-8"
-            >
-              <h3 className="text-2xl font-semibold text-light-grey mb-4">Who I Am</h3>
-              <p className="text-foreground leading-relaxed">
-                A passionate developer who believes in the power of technology to create meaningful change.
-                I combine technical expertise with creative vision to build solutions that matter.
-              </p>
-            </motion.div>
+        <div className="about-heading max-w-5xl mb-12">
+          {["EARLY IN MY CAREER.", "ALREADY THINKING BEYOND CODE."].map((line) => (
+            <span key={line} className="clip-text-wrap">
+              <span className="about-line block text-section-heading text-[#111111] leading-tight">
+                {line}
+              </span>
+            </span>
+          ))}
+        </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false }}
-              transition={{ delay: 0.4 }}
-              className="rounded-lg border border-secondary/20 bg-card/50 p-5 backdrop-blur-sm glow-purple transition-all hover:border-secondary/50 sm:p-8"
-            >
-              <h3 className="text-2xl font-semibold text-light-grey mb-4">What I Do</h3>
-              <p className="text-foreground leading-relaxed">
-                From full-stack web applications to innovative mobile solutions, I specialize in turning
-                complex problems into elegant, user-friendly experiences.
-              </p>
-            </motion.div>
+        <div className="about-divider border-t border-[#E5E5E5] mb-12" aria-hidden="true" />
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+          <div className="lg:col-span-7">
+            <p className="about-body text-body max-w-2xl">
+              I'm at the beginning of my professional journey, but I've already
+              spent time building products, exploring technologies, understanding
+              business requirements, and turning ideas into working solutions.
+            </p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false }}
-            transition={{ delay: 0.6 }}
-            className="mt-6 rounded-lg border border-accent/20 bg-card/50 p-5 backdrop-blur-sm glow-magenta transition-all hover:border-accent/50 sm:mt-8 sm:p-8"
-          >
-            <h3 className="text-2xl font-semibold text-light-grey mb-4">My Mission</h3>
-            <p className="text-foreground leading-relaxed">
-              To push the boundaries of what's possible in digital creation, continuously learning and evolving
-              to craft experiences that inspire, engage, and make a lasting impact.
-            </p>
-          </motion.div>
-        </motion.div>
+          <div className="about-stats lg:col-span-5 grid grid-cols-2 gap-8">
+            {[
+              { value: "4+", label: "PRODUCTS SHIPPED" },
+              { value: "3+", label: "YEARS BUILDING" },
+              { value: "AI",  label: "AUTOMATION FOCUS" },
+              { value: "∞",  label: "PROBLEMS SOLVED" },
+            ].map((stat) => (
+              <div key={stat.label} className="about-stat">
+                <p
+                  className="font-bold text-[#111111] geo-sans mb-1"
+                  style={{ fontSize: "clamp(32px, 4vw, 52px)", lineHeight: 1, letterSpacing: "-0.04em" }}
+                >
+                  {stat.value}
+                </p>
+                <p className="text-label text-[#777777]">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
-};
-
-export default About;
+}

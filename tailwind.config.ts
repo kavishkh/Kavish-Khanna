@@ -2,7 +2,13 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+    "./index.html",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -14,10 +20,11 @@ export default {
     },
     extend: {
       fontFamily: {
-        space: ['"Space Grotesk"', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
+        sans: ['"Geist"', '"Geist Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"Geist Mono"', '"GeistMono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       colors: {
+        /* Shadcn/ui CSS-variable colors */
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -61,52 +68,39 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        /* Design system direct colors */
+        main: "#111111",
+        secondary: "#777777",
+        "row-hover": "#F7F7F7",
+        "design-border": "#E5E5E5",
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        /* Minimal radii — editorial style avoids pill shapes */
+        lg: "0px",
+        md: "0px",
+        sm: "0px",
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
-        },
-        "float": {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-20px)" },
-        },
-        "pulse-glow": {
-          "0%, 100%": { 
-            boxShadow: "0 0 20px hsl(180 100% 50% / 0.3), 0 0 40px hsl(180 100% 50% / 0.1)" 
-          },
-          "50%": { 
-            boxShadow: "0 0 30px hsl(180 100% 50% / 0.6), 0 0 60px hsl(180 100% 50% / 0.3)" 
-          },
-        },
-        "orbit": {
-          "0%": { transform: "rotate(0deg) translateX(100px) rotate(0deg)" },
-          "100%": { transform: "rotate(360deg) translateX(100px) rotate(-360deg)" },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "float": "float 6s ease-in-out infinite",
-        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
-        "orbit": "orbit 20s linear infinite",
+      },
+      transitionTimingFunction: {
+        custom: "cubic-bezier(0.22, 1, 0.36, 1)",
+      },
+      transitionDuration: {
+        "250": "250ms",
+        "350": "350ms",
+        "600": "600ms",
       },
     },
   },
