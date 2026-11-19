@@ -58,7 +58,7 @@ const PROJECTS = [
     problem: "Tracking expenses while traveling is difficult and splitting bills fairly among group members is complicated.",
     solution: "An expensive tracker app linked with UPI that automatically divides expenses equally among trip participants.",
     tech: ["React Native", "Firebase", "UPI Integration"],
-    demo: null as string | null,
+    demo: "https://split-smart-ten.vercel.app/",
     github: null as string | null,
   },
 ];
