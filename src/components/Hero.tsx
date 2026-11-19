@@ -172,7 +172,7 @@ export default function Hero() {
               <span className="w-1.5 h-1.5 rounded-full bg-[#111111] animate-pulse" style={{ animationDuration: "2.5s" }} aria-hidden="true" />
               <span className="text-label text-[#777777]">AVAILABLE FOR WORK</span>
             </div>
-            <div className="hero-meta-item text-label text-[#777777]">NEW DELHI, INDIA</div>
+            <div className="hero-meta-item text-label text-[#777777]">CHANDIGARH, INDIA</div>
           </div>
 
           <button
@@ -192,7 +192,7 @@ export default function Hero() {
           <span className="w-1.5 h-1.5 rounded-full bg-[#111111]" aria-hidden="true" />
           <span className="text-label text-[#777777]">AVAILABLE FOR WORK</span>
         </div>
-        <span className="text-label text-[#777777]">NEW DELHI, INDIA</span>
+        <span className="text-label text-[#777777]">CHANDIGARH, INDIA</span>
       </div>
     </section>
   );

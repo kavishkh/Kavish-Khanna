@@ -198,7 +198,7 @@ export default function Navigation() {
               ))}
             </nav>
 
-            <div className="text-label text-[#777777] mt-auto">NEW DELHI, INDIA</div>
+            <div className="text-label text-[#777777] mt-auto">CHANDIGARH, INDIA</div>
           </div>
         </>
       )}

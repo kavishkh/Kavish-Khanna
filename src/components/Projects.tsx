@@ -2,48 +2,63 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import BIDZO from "../Images/BIDZO.png";
+import FRXSH from "../Images/FRXSH.png";
+import Herflow from "../Images/Herflow.png";
+import Powerlite from "../Images/Powerlite.png";
+import SplitSmart from "../Images/SplitSmart.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const PROJECTS = [
   {
     name: "HerFlow",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1200&q=80",
-    category: "HEALTH / PRODUCTIVITY",
+    image: Herflow,
+    category: "HEALTH / WELLNESS",
     problem: "Women's health data fragmented across multiple apps with no unified tracker.",
-    solution: "A unified period & wellness tracking platform that consolidates cycle data, symptoms, and insights in one private interface.",
+    solution: "An app that analyses women's health and gives them suggestions.",
     tech: ["React Native", "Python", "TensorFlow"],
     demo: null as string | null,
     github: null as string | null,
   },
   {
-    name: "Frxsh",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
+    name: "BIDZO",
+    image: BIDZO,
     category: "E-COMMERCE",
-    problem: "Student entrepreneurs lack a low-friction storefront to sell products on campus.",
-    solution: "A student-driven marketplace enabling creators to build brands and sell directly.",
-    tech: ["Next.js", "PostgreSQL", "Stripe"],
-    demo: "https://frxsh.vercel.app/",
-    github: null as string | null,
-  },
-  {
-    name: "NourishWell",
-    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=80",
-    category: "WELLNESS",
-    problem: "Nutrition planning is one-size-fits-all and difficult to sustain.",
-    solution: "Personalized meal planning and nutrition tracking adapted to individual goals and dietary preferences.",
+    problem: "A website where anyone can bidding.",
+    solution: "A bidding website where anyone can participate.",
     tech: ["React", "Node.js", "MongoDB"],
     demo: null as string | null,
     github: null as string | null,
   },
   {
+    name: "Frxsh",
+    image: FRXSH,
+    category: "E-COMMERCE",
+    problem: "Students need a platform to sell and buy premium products at less price.",
+    solution: "A startup idea where students can sell and buy premium products at very less price.",
+    tech: ["Next.js", "PostgreSQL", "Stripe"],
+    demo: "https://frxsh.vercel.app/",
+    github: null as string | null,
+  },
+  {
     name: "Powerlite",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80",
+    image: Powerlite,
     category: "INDUSTRIAL / ELECTRICAL",
     problem: "Premium electrical solutions needed a professional digital presence to reach buyers.",
     solution: "A clean corporate site showcasing industrial transformers and electrical products with clear specifications.",
     tech: ["React", "Node.js", "MongoDB"],
     demo: "https://powerlite-heyr.vercel.app/",
+    github: null as string | null,
+  },
+  {
+    name: "SplitSmart",
+    image: SplitSmart,
+    category: "E-COMMERCE / FINTECH",
+    problem: "Tracking expenses while traveling is difficult and splitting bills fairly among group members is complicated.",
+    solution: "An expensive tracker app linked with UPI that automatically divides expenses equally among trip participants.",
+    tech: ["React Native", "Firebase", "UPI Integration"],
+    demo: null as string | null,
     github: null as string | null,
   },
 ];
