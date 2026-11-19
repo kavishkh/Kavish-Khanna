@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 import BIDZO from "../Images/BIDZO.png";
-import FRXSH from "../Images/FRXSH.png";
+import FRXSH from "../Images/Frxsh.png";
 import Herflow from "../Images/Herflow.png";
 import Powerlite from "../Images/Powerlite.png";
 import SplitSmart from "../Images/SplitSmart.png";
