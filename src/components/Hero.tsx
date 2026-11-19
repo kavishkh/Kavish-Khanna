@@ -113,15 +113,15 @@ export default function Hero() {
       <div className="mx-auto w-full max-w-7xl flex-1 flex flex-col lg:flex-row lg:items-center px-4 sm:px-6 lg:px-8 pt-[60px] pb-0">
 
         {/* ── Left column ─────────────────────────────────────── */}
-        <div className="lg:flex-1 flex flex-col justify-center py-16 lg:py-24">
+        <div className="lg:flex-1 flex flex-col justify-center py-10 sm:py-16 lg:py-24">
 
           {/* Label */}
-          <p className="hero-label text-label text-[#777777] mb-8">
+          <p className="hero-label text-label text-[#777777] mb-6 sm:mb-8">
             DEVELOPER / STRATEGIST / AI AUTOMATION
           </p>
 
           {/* Headline — per-line clip mask */}
-          <h1 className="text-hero text-[#111111] mb-10" aria-label="I don't just write code. I solve problems.">
+          <h1 className="text-hero text-[#111111] mb-7 sm:mb-10" aria-label="I don't just write code. I solve problems.">
             {["I DON'T JUST", "WRITE CODE.", "I SOLVE", "PROBLEMS."].map((line) => (
               <span key={line} className="clip-text-wrap" aria-hidden="true">
                 <span className="hero-line-inner block">{line}</span>
@@ -130,17 +130,17 @@ export default function Hero() {
           </h1>
 
           {/* Supporting copy */}
-          <p className="hero-support text-body max-w-lg mb-10">
+          <p className="hero-support text-body max-w-lg mb-8 sm:mb-10">
             I'm Kavish Khanna. I build digital products, solve technical
             challenges, and use AI automation to turn complex business problems
             into practical solutions.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
             <button
               onClick={() => scrollTo("work")}
-              className="hero-cta hero-cta-magnetic group inline-flex items-center gap-3 bg-[#111111] text-white text-label font-semibold px-7 py-4 border border-[#111111]"
+              className="hero-cta hero-cta-magnetic group inline-flex w-full sm:w-auto items-center justify-center gap-3 bg-[#111111] text-white text-label font-semibold px-5 sm:px-7 py-4 border border-[#111111]"
               style={{ transition: "background-color 350ms cubic-bezier(0.22,1,0.36,1), color 350ms cubic-bezier(0.22,1,0.36,1)" }}
               onMouseEnter={(e) => { const b = e.currentTarget; b.style.backgroundColor = "#fff"; b.style.color = "#111"; }}
               onMouseLeave={(e) => { const b = e.currentTarget; b.style.backgroundColor = "#111"; b.style.color = "#fff"; }}
@@ -155,7 +155,7 @@ export default function Hero() {
 
             <button
               onClick={() => scrollTo("contact")}
-              className="hero-cta hero-cta-magnetic group inline-flex items-center gap-3 bg-white text-[#111111] text-label font-semibold px-7 py-4 border border-[#111111]"
+              className="hero-cta hero-cta-magnetic group inline-flex w-full sm:w-auto items-center justify-center gap-3 bg-white text-[#111111] text-label font-semibold px-5 sm:px-7 py-4 border border-[#111111]"
               style={{ transition: "background-color 350ms cubic-bezier(0.22,1,0.36,1), color 350ms cubic-bezier(0.22,1,0.36,1)" }}
               onMouseEnter={(e) => { const b = e.currentTarget; b.style.backgroundColor = "#111"; b.style.color = "#fff"; }}
               onMouseLeave={(e) => { const b = e.currentTarget; b.style.backgroundColor = "#fff"; b.style.color = "#111"; }}
