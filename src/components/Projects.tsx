@@ -135,8 +135,8 @@ export default function Projects() {
               {/* Content */}
               <div className="lg:col-span-8 xl:col-span-9 flex flex-col justify-between gap-6">
                 {/* Title row */}
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                  <div>
+                <div className="flex items-start justify-between gap-4">
+                  <div className="min-w-0">
                     <h3
                       className="font-bold text-[#111111] geo-sans group-hover:translate-x-[3px] transition-button"
                       style={{ fontSize: "clamp(22px, 2.5vw, 32px)", letterSpacing: "-0.03em", lineHeight: 1.1 }}
@@ -153,7 +153,7 @@ export default function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="group/link flex items-center gap-1.5 text-label text-[#111111] link-underline"
+                        className="group/link flex items-center gap-1.5 whitespace-nowrap text-label text-[#111111] link-underline"
                         aria-label={`Live demo of ${project.name}`}
                       >
                         <ExternalLink className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
@@ -167,7 +167,7 @@ export default function Projects() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="group/link flex items-center gap-1.5 text-label text-[#111111] link-underline"
+                        className="group/link flex items-center gap-1.5 whitespace-nowrap text-label text-[#111111] link-underline"
                         aria-label={`GitHub for ${project.name}`}
                       >
                         <Github className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />

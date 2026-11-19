@@ -205,7 +205,7 @@
 @layer utilities {
   .link-underline {
     position: relative;
-    display: inline-block;
+    display: inline-flex;
   }
 
   .link-underline::after {
